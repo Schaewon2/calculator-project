@@ -41,8 +41,7 @@ public class Calculator {
             System.out.println("결과: " + result);
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
-            String status = sc.next();
-            if (status.equals("exit")) {
+            if (sc.next().equals("exit")) {
                 System.out.println("계산을 종료합니다.");
                 break;
             }
