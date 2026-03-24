@@ -18,8 +18,16 @@ public class App {
             System.out.print("사칙연산 기호를 입력하세요: ");
             char op = sc.next().charAt(0);
 
-            double tmp = calculator.calculate(num1, num2, op);
-            calculator.addResult(tmp);
+            double result = calculator.calculate(num1, num2, op);
+            calculator.addResult(result);
+            System.out.println("계산 결과: " + result);
+            System.out.println("현재 저장된 결과: " + calculator.getResults());
+
+            System.out.println("가장 오래된 계산 기록을 삭제하시겠습니까? (yes 입력 시 삭제)");
+            if (sc.next().equals("yes")) {
+                calculator.removeResult();
+                System.out.println("가장 오래된 계산 기록을 삭제했습니다.");
+            }
 
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료)");
             if (sc.next().equals("exit")) {

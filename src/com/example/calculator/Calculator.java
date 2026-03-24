@@ -7,39 +7,48 @@ public class Calculator {
 
     private List<Double> results = new ArrayList<>();
 
-    private double result = 0.0;
-
     public double calculate(int num1, int num2, char op) {
+        double tmp = 0.0;
         switch (op) {
             case '+':
-                result = num1 + num2;
+                tmp = num1 + num2;
                 break;
             case '-':
-                result = num1 - num2;
+                tmp = num1 - num2;
                 break;
             case '*':
-                result = num1 * num2;
+                tmp = num1 * num2;
                 break;
             case '/':
                 if (num2 == 0) {
                     System.out.println("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
+                    return 0;
                 }
-                result = num1 / (double) num2;
+                tmp = num1 / (double) num2;
+                break;
+            default:
+                System.out.println("잘못된 연산자입니다.");
+                return 0;
         }
-        return result;
+        return tmp;
     }
 
-    public List<Double> addResult(Double result) {
+    public void addResult(Double result) {
         results.add(result);
-        System.out.println("결과: " + results);
-        return results;
     }
 
+    public void removeResult() {
+        results.remove(0);
+        System.out.println("가장 오래된 기록을 삭제했습니다.");
+    }
+
+    // getter
     public List<Double> getResults() {
         return results;
     }
 
-    public double getResult() {
-        return result;
+    // setter
+    public void setResults(List<Double> results) {
+        this.results = results;
     }
 }
