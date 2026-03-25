@@ -7,6 +7,7 @@ public class App {
 
     public static void main(String[] args) {
         ArithmeticCalculator<Double> calculator = new ArithmeticCalculator<>();
+        OperatorType op;
 
         Scanner sc = new Scanner(System.in);
 
@@ -18,8 +19,14 @@ public class App {
             double num2 = sc.nextDouble();
 
             // 사칙연산 기호 입력 후에 char 타입에서 enum 타입으로 형변환
-            System.out.print("사칙연산 기호를 입력하세요: ");
-            OperatorType op = OperatorType.fromOperator(sc.next().charAt(0));
+            try {
+                System.out.print("사칙연산 기호를 입력하세요: ");
+                op = OperatorType.fromOperator(sc.next().charAt(0));
+            } catch (IllegalArgumentException e) {
+                String message = e.getMessage();
+                System.out.println(message + " 다시 입력해주세요.");
+                continue;
+            }
 
             // 사칙연산 메서드 실행하여 result 변수에 담아줌.
             double result = calculator.calculate(num1, num2, op);

@@ -23,7 +23,14 @@ public class ArithmeticCalculator<T extends Number> {
                 break;
             case DIVIDE:
                 if (n2 == 0) {
-                    throw new ArithmeticException("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
+                    try {
+                        if (n2 == 0) {
+                            throw new ArithmeticException();
+                        }
+                    } catch (ArithmeticException e) {
+                        System.out.println("나눗셈 연산에서 분모(두 번째 정수)에 0이 입력될 수 없습니다.");
+                        break;
+                    }
                 }
                 tmp = n1 / n2;
         }
