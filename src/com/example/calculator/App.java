@@ -1,21 +1,18 @@
 package com.example.calculator;
 
-import java.util.List;
-import java.util.Scanner;
-
 public class App {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        ArithmeticCalculator<Double> calculator = new ArithmeticCalculator<>();
+        ArithmeticCalculator<Double> calculator = new ArithmeticCalculator<>(); // ArithmeticCalculator 객체 생성
 
         while (true) {
-            calculator.inputNumber();
+            calculator.inputNumber(); // 첫 번째, 두 번째 숫자 입력
 
-            if (!calculator.inputOperator()) {
+            if (!calculator.inputOperator()) { // 연산 기호 입력
                 continue;
             }
 
+            // calculate 메서드로 계산 후, result에 저장
             double result = calculator.calculate(calculator.getNum1(), calculator.getNum2(), calculator.getOp());
 
             calculator.addResult(result); // 리스트에 계산한 결과 추가

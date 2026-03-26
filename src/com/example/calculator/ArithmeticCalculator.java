@@ -7,25 +7,26 @@ import java.util.Scanner;
 
 public class ArithmeticCalculator<T extends Number> {
     Scanner scanner = new Scanner(System.in);
-    // 계산 결과를 담을 리스트 생성
-    private List<Double> results = new ArrayList<>();
+
+    private List<Double> results = new ArrayList<>(); // 계산 결과를 담을 리스트 생성
+    // 첫 번째 숫자, 두 번째 숫자, 연산 기호
     private double num1;
     private double num2;
     OperatorType op;
 
-    public void inputNumber(){
+    public void inputNumber(){ //
         System.out.print("첫 번째 숫자를 입력하세요: ");
         num1 = scanner.nextDouble();
         System.out.print("두 번째 숫자를 입력하세요: ");
         num2 = scanner.nextDouble();
     }
 
-    public boolean inputOperator() {
+    public boolean inputOperator() { // 연산 기호 입력
         try {
             System.out.print("사칙연산 기호를 입력하세요: ");
-            op = OperatorType.fromOperator(scanner.next().charAt(0));
+            op = OperatorType.fromOperator(scanner.next().charAt(0)); // 입력한 값이 Enum 상수에 있을 시 op에 저장하고 true 반환
             return true;
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) { // 입력한 값이 Enum 상수에 없을 시 예외 처리 후 false 반환
             String message = e.getMessage();
             System.out.println(message + " 다시 입력해주세요.");
             return false;
@@ -55,17 +56,17 @@ public class ArithmeticCalculator<T extends Number> {
                     }
                 }
                 return n1 / n2;
-            default:
-
         }
         return 0;
     }
 
+    // 계산한 값을 받아 results에 저장
     public void addResult(Double result) {
         System.out.println("계산 결과: " + result);
         results.add(result);
     }
 
+    // 항목 선택
     public boolean optionPrint() {
         System.out.println("==================== 목록 ====================");
         System.out.println("1. 가장 오래된 계산 기록 삭제");
@@ -97,17 +98,20 @@ public class ArithmeticCalculator<T extends Number> {
         }
     }
 
+    // 가장 오래된 계산 기록 삭제
     public void removeResult() {
         results.remove(0);
         System.out.println("가장 오래된 계산 기록을 삭제했습니다.");
     }
 
+    // 저장된 연산 결과들 중 입력받은 값보다 큰 결과값을 출력
     public List<Double> getResultGreaterThan(Double num1, Double num2) {
         return results.stream()
                 .filter(result -> result > num1 && result > num2)
                 .collect(Collectors.toList());
     }
 
+    // getter
     public double getNum1() {
         return num1;
     }
